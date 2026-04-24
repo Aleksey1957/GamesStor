@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Профиль | GameStore</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+        }
+
+        .profile-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4em;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .header h1 {
+            font-size: 2.2em;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .header .username {
+            font-size: 1.3em;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 40px 30px;
+        }
+
+        .profile-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .info-card {
+            background: linear-gradient(135deg, #f8f9ff 0%, #e8e9ff 100%);
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            border-color: #667eea;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
+        }
+
+        .info-card .card-icon {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .info-card h3 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .info-card .card-value {
+            font-size: 2em;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .profile-details {
+            background: #f8f9ff;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+
+        .profile-details h3 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 1.3em;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 10px;
+        }
+
+        .detail-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #e8e8e8;
+        }
+
+        .detail-item:last-child {
+            border-bottom: none;
+        }
+
+        .detail-label {
+            font-weight: 600;
+            color: #666;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .detail-value {
+            font-weight: 500;
+            color: #333;
+        }
+
+        .recent-games {
+            margin-bottom: 30px;
+        }
+
+        .recent-games h3 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 1.3em;
+        }
+
+        .games-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .game-item {
+            background: #f8f9ff;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .game-item:hover {
+            background: #e8e9ff;
+            transform: translateY(-3px);
+        }
+
+        .game-item .game-icon {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .game-item h4 {
+            color: #333;
+            margin-bottom: 5px;
+            font-size: 0.95em;
+        }
+
+        .game-item .hours {
+            color: #667eea;
+            font-weight: 600;
+            font-size: 0.9em;
+        }
+
+        .no-games {
+            text-align: center;
+            padding: 30px;
+            color: #999;
+        }
+
+        .actions {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-align: center;
+            cursor: pointer;
+            border: none;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.95em;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+        }
+
+        .btn-logout {
+            background: #ff4757;
+            color: white;
+            box-shadow: 0 5px 15px rgba(255, 71, 87, 0.4);
+        }
+
+        .btn-logout:hover {
+            background: #ff3838;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 71, 87, 0.6);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+            }
+
+            .header {
+                padding: 30px 20px;
+            }
+
+            .header h1 {
+                font-size: 1.8em;
+            }
+
+            .content {
+                padding: 30px 20px;
+            }
+
+            .profile-info {
+                grid-template-columns: 1fr;
+            }
+
+            .actions {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="profile-avatar">👤</div>
+            <h1>{{ user.username }}</h1>
+            <p class="username">Ваш игровой профиль</p>
+        </div>
+
+        <div class="content">
+            <div class="profile-info">
+                <div class="info-card">
+                    <div class="card-icon">🎮</div>
+                    <h3>Куплено игр</h3>
+                    <p class="card-value">{{ purchased_games_count }}</p>
+                </div>
+                <div class="info-card">
+                    <div class="card-icon">⏱️</div>
+                    <h3>Часов в игре</h3>
+                    <p class="card-value">{{ total_hours_played }}</p>
+                </div>
+                <div class="info-card">
+                    <div class="card-icon">🛒</div>
+                    <h3>В корзине</h3>
+                    <p class="card-value">{{ cart_items_count }}</p>
+                </div>
+            </div>
+
+            <div class="profile-details">
+                <h3>📋 Информация об аккаунте</h3>
+                <div class="detail-item">
+                    <span class="detail-label">👤 Имя пользователя</span>
+                    <span class="detail-value">{{ user.username }}</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">📧 Email</span>
+                    <span class="detail-value">{{ user.email|default:"Не указан" }}</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">📅 Дата регистрации</span>
+                    <span class="detail-value">{{ user.date_joined|date:"d.m.Y" }}</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">🕐 Последний вход</span>
+                    <span class="detail-value">{{ user.last_login|date:"d.m.Y H:i"|default:"Первый вход" }}</span>
+                </div>
+            </div>
+
+            {% if purchased_games %}
+            <div class="recent-games">
+                <h3>🎯 Последние покупки</h3>
+                <div class="games-list">
+                    {% for purchase in recent_purchases %}
+                    <div class="game-item">
+                        <div class="game-icon">🎮</div>
+                        <h4>{{ purchase.info.name }}</h4>
+                        <p class="hours">⏱️ {{ purchase.hours_played }} ч.</p>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% else %}
+            <div class="no-games">
+                <p>🎮 У вас пока нет купленных игр</p>
+            </div>
+            {% endif %}
+
+            <div class="actions">
+                <a href="{% url 'items_list' %}" class="btn btn-primary">🎮 В магазин</a>
+                <a href="{% url 'shopping_cart' %}" class="btn btn-primary">🛒 Корзина</a>
+                <form method="post" action="{% url 'logout' %}" style="display: inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-logout">🚪 Выйти</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

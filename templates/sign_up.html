@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрация | GameStore</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 500px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 30px 30px;
+            text-align: center;
+        }
+
+        .header .register-icon {
+            font-size: 3.5em;
+            margin-bottom: 15px;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .header h2 {
+            font-size: 2em;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            opacity: 0.9;
+            font-size: 1em;
+        }
+
+        .content {
+            padding: 40px 30px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        form p {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        label {
+            font-weight: 600;
+            color: #333;
+            font-size: 0.95em;
+            margin-bottom: 5px;
+        }
+
+        input {
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1em;
+            transition: all 0.3s ease;
+            background: #f8f9ff;
+            font-family: 'Poppins', sans-serif;
+            width: 100%;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #667eea;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        input::placeholder {
+            color: #999;
+        }
+
+        .helptext {
+            font-size: 0.8em;
+            color: #999;
+            margin-top: 5px;
+        }
+
+        .errorlist {
+            list-style: none;
+            padding: 0;
+            margin: 5px 0;
+            color: #ff4757;
+            font-size: 0.85em;
+            font-weight: 500;
+        }
+
+        .errorlist li {
+            padding: 3px 0;
+        }
+
+        .form-errors {
+            background: #ffe0e0;
+            color: #cc0000;
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 4px solid #cc0000;
+            margin-bottom: 20px;
+            font-size: 0.9em;
+        }
+
+        .form-errors ul {
+            margin-left: 20px;
+            padding: 0;
+        }
+
+        button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 10px;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+            font-family: 'Poppins', sans-serif;
+            width: 100%;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .password-requirements {
+            background: #f0f0ff;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            border-left: 4px solid #667eea;
+        }
+
+        .password-requirements h4 {
+            color: #333;
+            margin-bottom: 8px;
+            font-size: 0.95em;
+        }
+
+        .password-requirements ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .password-requirements li {
+            color: #666;
+            font-size: 0.85em;
+            padding: 3px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .password-requirements li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px 30px 30px;
+            border-top: 1px solid #f0f0f0;
+        }
+
+        .footer a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .footer a:hover {
+            color: #764ba2;
+            text-decoration: underline;
+        }
+
+        .footer p {
+            color: #666;
+            font-size: 0.95em;
+        }
+
+        .benefits {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .benefit-item {
+            padding: 15px;
+            background: #f8f9ff;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .benefit-item:hover {
+            background: #e8e9ff;
+            transform: translateY(-2px);
+        }
+
+        .benefit-icon {
+            font-size: 2em;
+            margin-bottom: 5px;
+        }
+
+        .benefit-text {
+            font-size: 0.8em;
+            color: #666;
+            font-weight: 500;
+        }
+
+        /* Мобильная версия */
+        @media (max-width: 480px) {
+            .container {
+                margin: 10px;
+            }
+
+            .header {
+                padding: 30px 20px;
+            }
+
+            .header h2 {
+                font-size: 1.5em;
+            }
+
+            .content {
+                padding: 30px 20px;
+            }
+
+            input, button {
+                padding: 12px;
+            }
+
+            .benefits {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="register-icon">🎮</div>
+            <h2>Регистрация</h2>
+            <p>Создайте аккаунт и начните играть!</p>
+        </div>
+
+        <div class="content">
+            <div class="benefits">
+                <div class="benefit-item">
+                    <div class="benefit-icon">🎯</div>
+                    <div class="benefit-text">Доступ к играм</div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">🛒</div>
+                    <div class="benefit-text">Корзина покупок</div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">💾</div>
+                    <div class="benefit-text">Сохранение прогресса</div>
+                </div>
+            </div>
+
+            {% if form.errors %}
+                <div class="form-errors">
+                    <strong>⚠ Ошибка регистрации:</strong>
+                    <ul>
+                        {% for field, errors in form.errors.items %}
+                            {% for error in errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+
+            <div class="password-requirements">
+                <h4>🔒 Требования к паролю:</h4>
+                <ul>
+                    <li>Минимум 8 символов</li>
+                    <li>Не должен быть слишком простым</li>
+                    <li>Не должен состоять только из цифр</li>
+                </ul>
+            </div>
+
+            <form method="post">
+                {% csrf_token %}
+
+                <p>
+                    <label for="id_username">👤 Имя пользователя</label>
+                    {{ form.username }}
+                    {% if form.username.help_text %}
+                        <span class="helptext">{{ form.username.help_text }}</span>
+                    {% endif %}
+                    {% if form.username.errors %}
+                        <ul class="errorlist">
+                            {% for error in form.username.errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </p>
+
+                <p>
+                    <label for="id_email">📧 Email</label>
+                    {{ form.email }}
+                    {% if form.email.help_text %}
+                        <span class="helptext">{{ form.email.help_text }}</span>
+                    {% endif %}
+                    {% if form.email.errors %}
+                        <ul class="errorlist">
+                            {% for error in form.email.errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </p>
+
+                <p>
+                    <label for="id_password1">🔒 Пароль</label>
+                    {{ form.password1 }}
+                    {% if form.password1.help_text %}
+                        <span class="helptext">{{ form.password1.help_text }}</span>
+                    {% endif %}
+                    {% if form.password1.errors %}
+                        <ul class="errorlist">
+                            {% for error in form.password1.errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </p>
+
+                <p>
+                    <label for="id_password2">🔒 Подтверждение пароля</label>
+                    {{ form.password2 }}
+                    {% if form.password2.help_text %}
+                        <span class="helptext">{{ form.password2.help_text }}</span>
+                    {% endif %}
+                    {% if form.password2.errors %}
+                        <ul class="errorlist">
+                            {% for error in form.password2.errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </p>
+
+                <button type="submit">🚀 Зарегистрироваться</button>
+            </form>
+        </div>
+
+        <div class="footer">
+            <p>Уже есть аккаунт? <a href="{% url 'login' %}">Войти</a></p>
+        </div>
+    </div>
+</body>
+</html>

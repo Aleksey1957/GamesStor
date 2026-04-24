@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Выход | GameStore</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 500px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 50px 30px 40px;
+        }
+
+        .logout-icon {
+            font-size: 5em;
+            margin-bottom: 20px;
+            animation: wave 2s infinite;
+        }
+
+        @keyframes wave {
+            0%, 100% {
+                transform: rotate(0deg);
+            }
+            25% {
+                transform: rotate(-10deg);
+            }
+            50% {
+                transform: rotate(10deg);
+            }
+            75% {
+                transform: rotate(-5deg);
+            }
+        }
+
+        .header h1 {
+            font-size: 2.2em;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            opacity: 0.9;
+            font-size: 1.1em;
+        }
+
+        .content {
+            padding: 40px 30px;
+        }
+
+        .message {
+            font-size: 1.2em;
+            color: #666;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .emoji-row {
+            font-size: 2em;
+            margin-bottom: 30px;
+            letter-spacing: 10px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 40px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.05em;
+            transition: all 0.3s ease;
+            margin: 10px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .btn-login {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-login:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+        }
+
+        .btn-home {
+            background: #f0f0f0;
+            color: #333;
+        }
+
+        .btn-home:hover {
+            background: #e0e0e0;
+            transform: translateY(-2px);
+        }
+
+        .footer {
+            padding: 20px 30px 30px;
+            border-top: 1px solid #f0f0f0;
+            color: #999;
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                margin: 10px;
+            }
+
+            .header {
+                padding: 30px 20px;
+            }
+
+            .header h1 {
+                font-size: 1.8em;
+            }
+
+            .content {
+                padding: 30px 20px;
+            }
+
+            .btn {
+                display: block;
+                width: 100%;
+                margin: 10px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logout-icon">👋</div>
+            <h1>До встречи!</h1>
+            <p>Вы успешно вышли из аккаунта</p>
+        </div>
+
+        <div class="content">
+            <div class="emoji-row">🎮 🎯 🛒</div>
+            <p class="message">
+                Спасибо, что были с нами!<br>
+                Возвращайтесь за новыми играми и приключениями.
+            </p>
+
+            <a href="{% url 'login' %}" class="btn btn-login">🔑 Войти снова</a>
+            <a href="{% url 'main' %}" class="btn btn-home">🏠 На главную</a>
+        </div>
+
+        <div class="footer">
+            <p>© 2024 GameStore. Все права защищены.</p>
+        </div>
+    </div>
+</body>
+</html>

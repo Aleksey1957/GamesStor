@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Главная - GameStore</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 50px 30px 40px;
+            text-align: center;
+        }
+
+        .header .welcome-icon {
+            font-size: 4em;
+            margin-bottom: 15px;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .header h2 {
+            font-size: 2.2em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .header .username {
+            color: #ffd700;
+            font-weight: 800;
+        }
+
+        .content {
+            padding: 40px 30px;
+            text-align: center;
+        }
+
+        .welcome-message {
+            font-size: 1.2em;
+            color: #666;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .info-cards {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .info-card {
+            background: linear-gradient(135deg, #f8f9ff 0%, #e8e9ff 100%);
+            padding: 20px;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            border-color: #667eea;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
+        }
+
+        .info-card .card-icon {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .info-card h3 {
+            color: #333;
+            margin-bottom: 5px;
+            font-size: 1.1em;
+        }
+
+        .info-card p {
+            color: #667eea;
+            font-weight: 600;
+            font-size: 1.3em;
+        }
+
+        .btn-logout {
+            background: linear-gradient(135deg, #ff4757 0%, #ff3838 100%);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 25px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 5px 15px rgba(255, 71, 87, 0.4);
+            margin-top: 20px;
+        }
+
+        .btn-logout:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 71, 87, 0.6);
+        }
+
+        .btn-logout:active {
+            transform: translateY(0);
+        }
+
+        .navigation {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            padding: 10px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            background: #f0f0f0;
+            color: #333;
+        }
+
+        .nav-btn:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px 30px;
+            border-top: 1px solid #f0f0f0;
+            color: #999;
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                margin: 10px;
+            }
+
+            .header {
+                padding: 30px 20px;
+            }
+
+            .header h2 {
+                font-size: 1.5em;
+            }
+
+            .info-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .content {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="welcome-icon">🎮</div>
+            <h2>Добро пожаловать, <span class="username">{{ user.username }}</span>!</h2>
+        </div>
+
+        <div class="content">
+            <p class="welcome-message">
+                Вы вошли в свой аккаунт GameStore.<br>
+                Здесь вы можете управлять своими играми и покупками.
+            </p>
+
+            <div class="info-cards">
+                <div class="info-card">
+                    <div class="card-icon">🛒</div>
+                    <h3>Корзина</h3>
+                    <p>{{ cart_count|default:"0" }} товаров</p>
+                </div>
+                <div class="info-card">
+                    <div class="card-icon">🎯</div>
+                    <h3>Игры</h3>
+                    <p>{{ games_count|default:"0" }} доступно</p>
+                </div>
+            </div>
+
+            <div class="navigation">
+                <a href="{% url 'items_list' %}" class="nav-btn">🎮 Магазин</a>
+                <a href="{% url 'shopping_cart' %}" class="nav-btn">🛒 Корзина</a>
+                <a href="{% url 'profile' %}" class="nav-btn">👤 Профиль</a>
+            </div>
+
+            <form method="post" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <button type="submit" class="btn-logout">🚪 Выйти из аккаунта</button>
+            </form>
+        </div>
+
+        <div class="footer">
+            <p>© 2024 GameStore. Все права защищены.</p>
+        </div>
+    </div>
+</body>
+</html>
